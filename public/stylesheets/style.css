@@ -65,7 +65,7 @@ a {
 }
 
 .statsPop:target{
-  display: block;
+  display: block !important;
 }
 
 .statsPop{
@@ -73,7 +73,7 @@ a {
   width: 50vw;
   height: 50vh;
 
-  display: none;
+  display: none !important; 
 
   top:25vh;
   left:25vw;
