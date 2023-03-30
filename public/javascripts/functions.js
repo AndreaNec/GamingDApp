@@ -1889,13 +1889,23 @@ async function getCharacter(){
 }
 
 async function getKeysShop(){
-	myContract.methods.getKeysShop().call().then(function(response){
+	await myContract.methods.getKeysShop().call().then(function(response){
 		console.log(response)
 	})
 }
 
 async function showStats(){
-	let statsPopUp = 
+	//le stats nello smart contract come anche il value del mine sono da rifare
+	await myContract.methods.getStats().call().then(function(response){
+		let stats = Object.values(response);
+		let key1 = "1"
+		console.log(stats)
+		document.getElementById("gainXBlockValue").innerHTML = stats[0]
+		document.getElementById("balanceValue").innerHTML = stats[1];
+		document.getElementById("damageValue").innerHTML = stats[2];
+		document.getElementById("defenseValue").innerHTML = stats[3];
+
+	})
 }
 
 
