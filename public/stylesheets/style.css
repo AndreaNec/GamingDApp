@@ -1,6 +1,7 @@
 *{
   box-sizing: border-box;
   margin: 0;
+  overflow-x: hidden;
 }
 
 body {
@@ -93,7 +94,7 @@ a {
 /*Inventory*/
 
 .inventoryButton{
-  width: 6em;
+  width: 10em;
   height: auto;
 
   background: transparent;
@@ -105,15 +106,15 @@ a {
   height: 100%;
 }
 
-.statsPop h1{
+.inventoryPop h1{
   font-size: 22px;
 }
 
-.statsPop:target{
+.inventoryPop:target{
   display: block !important;
 }
 
-.statsPop{
+.inventoryPop{
   transition: 200ms;
 
   padding: 2em;

@@ -1898,12 +1898,29 @@ async function showStats(){
 	//le stats nello smart contract come anche il value del mine sono da rifare
 	await myContract.methods.getStats().call().then(function(response){
 		let stats = Object.values(response);
-		let key1 = "1"
 		console.log(stats)
 		document.getElementById("gainXBlockValue").innerHTML = stats[0]
 		document.getElementById("balanceValue").innerHTML = stats[1];
 		document.getElementById("damageValue").innerHTML = stats[2];
 		document.getElementById("defenseValue").innerHTML = stats[3];
+
+	})
+}
+
+async function showInventory(){
+	await myContract.methods.getInventorys().call().then(function(response){
+		let inventory = response;
+		console.log(inventory)
+		document.getElementById("slotInv1").innerHTML = inventory[0].name
+		document.getElementById("slotInv2").innerHTML = inventory[1].name;
+		document.getElementById("slotInv3").innerHTML = inventory[2].name;
+		document.getElementById("slotInv4").innerHTML = inventory[3].name;
+		document.getElementById("slotInv5").innerHTML = inventory[4].name;
+		document.getElementById("slotInv6").innerHTML = inventory[5].name;
+		document.getElementById("slotInv7").innerHTML = inventory[6].name;
+		document.getElementById("slotInv8").innerHTML = inventory[7].name;
+		document.getElementById("slotInv9").innerHTML = inventory[8].name;
+		document.getElementById("slotInv10").innerHTML = inventory[9].name;
 
 	})
 }
