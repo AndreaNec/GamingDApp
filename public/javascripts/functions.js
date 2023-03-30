@@ -1,5 +1,11 @@
-let myAddress = "";
+//const { format } = require("morgan");
+
+
+//let myAddress = "";
 let web3 = {};
+let myContract = {}
+
+
 
 
 
@@ -8,16 +14,1312 @@ async function connectMetamask() {
     //console.log(Boolean(ethereum && ethereum.isMetaMask));
     // console.log(window.ethereum);
     web3 = new Web3(ethereum);
-    web3.eth.getAccounts(function (err, response) {
-        console.log("account via web3js api");
-        console.log(response);
-        myAddress = response[0];
-    })
+    // web3.eth.getAccounts(function (err, response) {
+    //     console.log("account via web3js api");
+    //     console.log(response);
+    //     myAddress = response[0];
+    // })
+
+	await web3.eth.getAccounts().then(function(response){
+		let myAddress = response[0];
+		console.log(response)
+	})
 
     const accounts = await ethereum.request({method: 'eth_accounts'});
     console.log("account via metamask api");
     console.log(accounts[0]);
     myAddress = accounts[0];
 
+	let abi = [
+		{
+			"inputs": [],
+			"name": "duel",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "payable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "mine",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "payable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_index",
+					"type": "uint256"
+				}
+			],
+			"name": "selectArmor",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_index",
+					"type": "uint256"
+				}
+			],
+			"name": "selectPickacxe",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_index",
+					"type": "uint256"
+				}
+			],
+			"name": "selectSword",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "string",
+					"name": "_world",
+					"type": "string"
+				}
+			],
+			"name": "selectWorld",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_index",
+					"type": "uint256"
+				}
+			],
+			"name": "Sell",
+			"outputs": [],
+			"stateMutability": "payable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "sendToContract",
+			"outputs": [],
+			"stateMutability": "payable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "string",
+					"name": "_name",
+					"type": "string"
+				}
+			],
+			"name": "setLogin",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "string",
+					"name": "toolToBuy",
+					"type": "string"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_index",
+					"type": "uint256"
+				}
+			],
+			"name": "ShopMint",
+			"outputs": [],
+			"stateMutability": "payable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "string",
+					"name": "_world",
+					"type": "string"
+				}
+			],
+			"name": "ShopMondo",
+			"outputs": [],
+			"stateMutability": "payable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"stateMutability": "nonpayable",
+			"type": "constructor"
+		},
+		{
+			"stateMutability": "payable",
+			"type": "receive"
+		},
+		{
+			"inputs": [],
+			"name": "getContractBalance",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "string",
+					"name": "_tool",
+					"type": "string"
+				}
+			],
+			"name": "getCost",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "getInventorys",
+			"outputs": [
+				{
+					"components": [
+						{
+							"internalType": "string",
+							"name": "name",
+							"type": "string"
+						},
+						{
+							"internalType": "uint256",
+							"name": "moneyMining",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "durability",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "damage",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "defense",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "boostarmor",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "cost",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "reSell",
+							"type": "uint256"
+						},
+						{
+							"internalType": "enum MineCoin.Rarity",
+							"name": "rarity",
+							"type": "uint8"
+						},
+						{
+							"internalType": "enum MineCoin.Tipo",
+							"name": "tipo",
+							"type": "uint8"
+						}
+					],
+					"internalType": "struct MineCoin.Tool[10]",
+					"name": "",
+					"type": "tuple[10]"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "getKeysShop",
+			"outputs": [
+				{
+					"internalType": "string[]",
+					"name": "",
+					"type": "string[]"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "getKeysShopWorlds",
+			"outputs": [
+				{
+					"internalType": "string[]",
+					"name": "",
+					"type": "string[]"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "getStats",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "string",
+					"name": "_toolStats",
+					"type": "string"
+				}
+			],
+			"name": "getToolStats",
+			"outputs": [
+				{
+					"components": [
+						{
+							"internalType": "string",
+							"name": "name",
+							"type": "string"
+						},
+						{
+							"internalType": "uint256",
+							"name": "moneyMining",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "durability",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "damage",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "defense",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "boostarmor",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "cost",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "reSell",
+							"type": "uint256"
+						},
+						{
+							"internalType": "enum MineCoin.Rarity",
+							"name": "rarity",
+							"type": "uint8"
+						},
+						{
+							"internalType": "enum MineCoin.Tipo",
+							"name": "tipo",
+							"type": "uint8"
+						}
+					],
+					"internalType": "struct MineCoin.Tool",
+					"name": "",
+					"type": "tuple"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"name": "keysShop",
+			"outputs": [
+				{
+					"internalType": "string",
+					"name": "",
+					"type": "string"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"name": "keysWorlds",
+			"outputs": [
+				{
+					"internalType": "string",
+					"name": "",
+					"type": "string"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "steve",
+			"outputs": [
+				{
+					"internalType": "string",
+					"name": "name",
+					"type": "string"
+				},
+				{
+					"internalType": "address payable",
+					"name": "me",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "health",
+					"type": "uint256"
+				},
+				{
+					"components": [
+						{
+							"internalType": "string",
+							"name": "name",
+							"type": "string"
+						},
+						{
+							"internalType": "uint256",
+							"name": "moneyMining",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "durability",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "damage",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "defense",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "boostarmor",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "cost",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "reSell",
+							"type": "uint256"
+						},
+						{
+							"internalType": "enum MineCoin.Rarity",
+							"name": "rarity",
+							"type": "uint8"
+						},
+						{
+							"internalType": "enum MineCoin.Tipo",
+							"name": "tipo",
+							"type": "uint8"
+						}
+					],
+					"internalType": "struct MineCoin.Tool",
+					"name": "sword",
+					"type": "tuple"
+				},
+				{
+					"components": [
+						{
+							"internalType": "string",
+							"name": "name",
+							"type": "string"
+						},
+						{
+							"internalType": "uint256",
+							"name": "moneyMining",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "durability",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "damage",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "defense",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "boostarmor",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "cost",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "reSell",
+							"type": "uint256"
+						},
+						{
+							"internalType": "enum MineCoin.Rarity",
+							"name": "rarity",
+							"type": "uint8"
+						},
+						{
+							"internalType": "enum MineCoin.Tipo",
+							"name": "tipo",
+							"type": "uint8"
+						}
+					],
+					"internalType": "struct MineCoin.Tool",
+					"name": "armor",
+					"type": "tuple"
+				},
+				{
+					"components": [
+						{
+							"internalType": "string",
+							"name": "name",
+							"type": "string"
+						},
+						{
+							"internalType": "uint256",
+							"name": "moneyMining",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "durability",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "damage",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "defense",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "boostarmor",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "cost",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "reSell",
+							"type": "uint256"
+						},
+						{
+							"internalType": "enum MineCoin.Rarity",
+							"name": "rarity",
+							"type": "uint8"
+						},
+						{
+							"internalType": "enum MineCoin.Tipo",
+							"name": "tipo",
+							"type": "uint8"
+						}
+					],
+					"internalType": "struct MineCoin.Tool",
+					"name": "pickacxe",
+					"type": "tuple"
+				},
+				{
+					"components": [
+						{
+							"internalType": "string",
+							"name": "name",
+							"type": "string"
+						},
+						{
+							"internalType": "uint256",
+							"name": "blockValue",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "cost",
+							"type": "uint256"
+						},
+						{
+							"internalType": "enum MineCoin.Availability",
+							"name": "availability",
+							"type": "uint8"
+						}
+					],
+					"internalType": "struct MineCoin.Worlds",
+					"name": "world",
+					"type": "tuple"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		}
+	];
+	let contracAddress = "0xe1d6CFB00160Cc6Be1c5c2B4Fb41fbb04665fa0B";
+    const myContract = new web3.eth.Contract(abi, contracAddress);
+    console.log(myContract);
+	await myContract.methods.getKeysShop().call({
+	}).then(function(response){
+		console.log(response)
+	})
+}
+
+async function loadContract(){
+	let abi = [
+		{
+			"inputs": [],
+			"name": "duel",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "payable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "mine",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "payable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_index",
+					"type": "uint256"
+				}
+			],
+			"name": "selectArmor",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_index",
+					"type": "uint256"
+				}
+			],
+			"name": "selectPickacxe",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_index",
+					"type": "uint256"
+				}
+			],
+			"name": "selectSword",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "string",
+					"name": "_world",
+					"type": "string"
+				}
+			],
+			"name": "selectWorld",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_index",
+					"type": "uint256"
+				}
+			],
+			"name": "Sell",
+			"outputs": [],
+			"stateMutability": "payable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "sendToContract",
+			"outputs": [],
+			"stateMutability": "payable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "string",
+					"name": "_name",
+					"type": "string"
+				}
+			],
+			"name": "setLogin",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "string",
+					"name": "toolToBuy",
+					"type": "string"
+				},
+				{
+					"internalType": "uint256",
+					"name": "_index",
+					"type": "uint256"
+				}
+			],
+			"name": "ShopMint",
+			"outputs": [],
+			"stateMutability": "payable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "string",
+					"name": "_world",
+					"type": "string"
+				}
+			],
+			"name": "ShopMondo",
+			"outputs": [],
+			"stateMutability": "payable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"stateMutability": "nonpayable",
+			"type": "constructor"
+		},
+		{
+			"stateMutability": "payable",
+			"type": "receive"
+		},
+		{
+			"inputs": [],
+			"name": "getContractBalance",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "string",
+					"name": "_tool",
+					"type": "string"
+				}
+			],
+			"name": "getCost",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "getInventorys",
+			"outputs": [
+				{
+					"components": [
+						{
+							"internalType": "string",
+							"name": "name",
+							"type": "string"
+						},
+						{
+							"internalType": "uint256",
+							"name": "moneyMining",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "durability",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "damage",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "defense",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "boostarmor",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "cost",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "reSell",
+							"type": "uint256"
+						},
+						{
+							"internalType": "enum MineCoin.Rarity",
+							"name": "rarity",
+							"type": "uint8"
+						},
+						{
+							"internalType": "enum MineCoin.Tipo",
+							"name": "tipo",
+							"type": "uint8"
+						}
+					],
+					"internalType": "struct MineCoin.Tool[10]",
+					"name": "",
+					"type": "tuple[10]"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "getKeysShop",
+			"outputs": [
+				{
+					"internalType": "string[]",
+					"name": "",
+					"type": "string[]"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "getKeysShopWorlds",
+			"outputs": [
+				{
+					"internalType": "string[]",
+					"name": "",
+					"type": "string[]"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "getStats",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				},
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "string",
+					"name": "_toolStats",
+					"type": "string"
+				}
+			],
+			"name": "getToolStats",
+			"outputs": [
+				{
+					"components": [
+						{
+							"internalType": "string",
+							"name": "name",
+							"type": "string"
+						},
+						{
+							"internalType": "uint256",
+							"name": "moneyMining",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "durability",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "damage",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "defense",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "boostarmor",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "cost",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "reSell",
+							"type": "uint256"
+						},
+						{
+							"internalType": "enum MineCoin.Rarity",
+							"name": "rarity",
+							"type": "uint8"
+						},
+						{
+							"internalType": "enum MineCoin.Tipo",
+							"name": "tipo",
+							"type": "uint8"
+						}
+					],
+					"internalType": "struct MineCoin.Tool",
+					"name": "",
+					"type": "tuple"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"name": "keysShop",
+			"outputs": [
+				{
+					"internalType": "string",
+					"name": "",
+					"type": "string"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"name": "keysWorlds",
+			"outputs": [
+				{
+					"internalType": "string",
+					"name": "",
+					"type": "string"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "steve",
+			"outputs": [
+				{
+					"internalType": "string",
+					"name": "name",
+					"type": "string"
+				},
+				{
+					"internalType": "address payable",
+					"name": "me",
+					"type": "address"
+				},
+				{
+					"internalType": "uint256",
+					"name": "health",
+					"type": "uint256"
+				},
+				{
+					"components": [
+						{
+							"internalType": "string",
+							"name": "name",
+							"type": "string"
+						},
+						{
+							"internalType": "uint256",
+							"name": "moneyMining",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "durability",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "damage",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "defense",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "boostarmor",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "cost",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "reSell",
+							"type": "uint256"
+						},
+						{
+							"internalType": "enum MineCoin.Rarity",
+							"name": "rarity",
+							"type": "uint8"
+						},
+						{
+							"internalType": "enum MineCoin.Tipo",
+							"name": "tipo",
+							"type": "uint8"
+						}
+					],
+					"internalType": "struct MineCoin.Tool",
+					"name": "sword",
+					"type": "tuple"
+				},
+				{
+					"components": [
+						{
+							"internalType": "string",
+							"name": "name",
+							"type": "string"
+						},
+						{
+							"internalType": "uint256",
+							"name": "moneyMining",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "durability",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "damage",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "defense",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "boostarmor",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "cost",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "reSell",
+							"type": "uint256"
+						},
+						{
+							"internalType": "enum MineCoin.Rarity",
+							"name": "rarity",
+							"type": "uint8"
+						},
+						{
+							"internalType": "enum MineCoin.Tipo",
+							"name": "tipo",
+							"type": "uint8"
+						}
+					],
+					"internalType": "struct MineCoin.Tool",
+					"name": "armor",
+					"type": "tuple"
+				},
+				{
+					"components": [
+						{
+							"internalType": "string",
+							"name": "name",
+							"type": "string"
+						},
+						{
+							"internalType": "uint256",
+							"name": "moneyMining",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "durability",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "damage",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "defense",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "boostarmor",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "cost",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "reSell",
+							"type": "uint256"
+						},
+						{
+							"internalType": "enum MineCoin.Rarity",
+							"name": "rarity",
+							"type": "uint8"
+						},
+						{
+							"internalType": "enum MineCoin.Tipo",
+							"name": "tipo",
+							"type": "uint8"
+						}
+					],
+					"internalType": "struct MineCoin.Tool",
+					"name": "pickacxe",
+					"type": "tuple"
+				},
+				{
+					"components": [
+						{
+							"internalType": "string",
+							"name": "name",
+							"type": "string"
+						},
+						{
+							"internalType": "uint256",
+							"name": "blockValue",
+							"type": "uint256"
+						},
+						{
+							"internalType": "uint256",
+							"name": "cost",
+							"type": "uint256"
+						},
+						{
+							"internalType": "enum MineCoin.Availability",
+							"name": "availability",
+							"type": "uint8"
+						}
+					],
+					"internalType": "struct MineCoin.Worlds",
+					"name": "world",
+					"type": "tuple"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		}
+	];
+	let contracAddress = "0xe1d6CFB00160Cc6Be1c5c2B4Fb41fbb04665fa0B";
+    myContract = new web3.eth.Contract(abi, contracAddress);
+    console.log(myContract);
+	await myContract.methods.getKeysShop().call({
+	}).then(function(response){
+		console.log(response)
+	})
+
 
 }
+
+
+
+
+

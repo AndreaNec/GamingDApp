@@ -1,8 +1,71 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+}
+
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: url(/images/background.png);
+  background-size:     cover;           
+  background-repeat:   no-repeat;
+  background-position: center; 
 }
 
 a {
   color: #00B7FF;
+}
+
+/*login*/
+
+.loginSec{
+  background: url(/images/forest.gif);
+  background-size:cover;           
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-clip: border-box;
+}
+
+.Log{
+  background-color: antiquewhite;
+  width: 40vw;
+  height: 40vh;
+  border-radius: 10px;
+  border: solid #13131377 5px;
+}
+
+
+
+
+
+section{
+  display: flex;
+  flex-direction: column;
+
+  
+  width: 100vw;
+  height: 100vh;
+}
+
+.world{
+  background: url(/images/forest.gif);
+  background-size:cover;           
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-clip: border-box;
+}
+
+.flex{
+  display: flex;
+}
+
+.column{
+  flex-direction: column;
+}
+
+.j-center{
+  justify-content: center;
+}
+
+.a-center{
+  align-items: center;
 }
