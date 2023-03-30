@@ -133,6 +133,17 @@ a {
   border-radius: 15px;
 }
 
+/*lowfunc*/
+.lowFunc{
+  width: 98vw;
+  height: auto;
+
+  position: relative;
+
+  justify-content: space-between;
+  align-items:end;
+  bottom: 3%;
+}
 
 section{
   display: flex;
@@ -149,6 +160,8 @@ section{
   background-repeat: no-repeat;
   background-position: center;
   background-clip: border-box;
+
+  justify-content: space-between;
 }
 
 .flex{
@@ -177,4 +190,9 @@ h1{
 
 p{
   margin: 0;
+}
+
+button{
+  background: transparent;
+  border: none;
 }
