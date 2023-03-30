@@ -30,7 +30,7 @@ async function connectMetamask() {
     console.log(accounts[0]);
     myAddress = accounts[0];
 
-	let abi = [
+	/*let abi = [
 		{
 			"inputs": [],
 			"name": "duel",
@@ -948,95 +948,22 @@ async function connectMetamask() {
 			"stateMutability": "view",
 			"type": "function"
 		}
-	]
-	let contracAddress = "0xd9145CCE52D386f254917e481eB44e9943F39138";
+	]*/
+	/*let contracAddress = "0xd9145CCE52D386f254917e481eB44e9943F39138";
     myContract = new web3.eth.Contract(abi, contracAddress);
     console.log(myContract);
 	await myContract.methods.getKeysShop().call({
 	}).then(function(response){
 		console.log(response)
-	})
+	})*/
 }
 
 async function loadContract(){
 	let abi = [
 		{
 			"inputs": [],
-			"name": "duel",
-			"outputs": [
-				{
-					"internalType": "bool",
-					"name": "",
-					"type": "bool"
-				}
-			],
-			"stateMutability": "payable",
-			"type": "function"
-		},
-		{
-			"inputs": [],
-			"name": "mine",
-			"outputs": [
-				{
-					"internalType": "uint256",
-					"name": "",
-					"type": "uint256"
-				}
-			],
-			"stateMutability": "payable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "uint256",
-					"name": "_index",
-					"type": "uint256"
-				}
-			],
-			"name": "selectArmor",
-			"outputs": [],
 			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "uint256",
-					"name": "_index",
-					"type": "uint256"
-				}
-			],
-			"name": "selectPickacxe",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "uint256",
-					"name": "_index",
-					"type": "uint256"
-				}
-			],
-			"name": "selectSword",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "string",
-					"name": "_world",
-					"type": "string"
-				}
-			],
-			"name": "selectWorld",
-			"outputs": [],
-			"stateMutability": "nonpayable",
-			"type": "function"
+			"type": "constructor"
 		},
 		{
 			"inputs": [
@@ -1049,26 +976,6 @@ async function loadContract(){
 			"name": "Sell",
 			"outputs": [],
 			"stateMutability": "payable",
-			"type": "function"
-		},
-		{
-			"inputs": [],
-			"name": "sendToContract",
-			"outputs": [],
-			"stateMutability": "payable",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "string",
-					"name": "_name",
-					"type": "string"
-				}
-			],
-			"name": "setLogin",
-			"outputs": [],
-			"stateMutability": "nonpayable",
 			"type": "function"
 		},
 		{
@@ -1104,35 +1011,20 @@ async function loadContract(){
 		},
 		{
 			"inputs": [],
-			"stateMutability": "nonpayable",
-			"type": "constructor"
-		},
-		{
+			"name": "duel",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
 			"stateMutability": "payable",
-			"type": "receive"
+			"type": "function"
 		},
 		{
 			"inputs": [],
 			"name": "getContractBalance",
-			"outputs": [
-				{
-					"internalType": "uint256",
-					"name": "",
-					"type": "uint256"
-				}
-			],
-			"stateMutability": "view",
-			"type": "function"
-		},
-		{
-			"inputs": [
-				{
-					"internalType": "string",
-					"name": "_tool",
-					"type": "string"
-				}
-			],
-			"name": "getCost",
 			"outputs": [
 				{
 					"internalType": "uint256",
@@ -1658,6 +1550,91 @@ async function loadContract(){
 		},
 		{
 			"inputs": [],
+			"name": "mine",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "payable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_index",
+					"type": "uint256"
+				}
+			],
+			"name": "selectArmor",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_index",
+					"type": "uint256"
+				}
+			],
+			"name": "selectPickacxe",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "uint256",
+					"name": "_index",
+					"type": "uint256"
+				}
+			],
+			"name": "selectSword",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "string",
+					"name": "_world",
+					"type": "string"
+				}
+			],
+			"name": "selectWorld",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "sendToContract",
+			"outputs": [],
+			"stateMutability": "payable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "string",
+					"name": "_name",
+					"type": "string"
+				}
+			],
+			"name": "setLogin",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
 			"name": "steve",
 			"outputs": [
 				{
@@ -1876,9 +1853,13 @@ async function loadContract(){
 			],
 			"stateMutability": "view",
 			"type": "function"
+		},
+		{
+			"stateMutability": "payable",
+			"type": "receive"
 		}
-	]
-	let contracAddress = "0xd9145CCE52D386f254917e481eB44e9943F39138";
+	];
+	let contracAddress = "0x3cE326B0fCeb8bdeED1cAfe8451D2e501e1c530a";
     myContract = new web3.eth.Contract(abi, contracAddress);
     console.log(myContract);
 	await myContract.methods.getKeysShop().call({
@@ -1894,11 +1875,28 @@ async function login(){
 	await myContract.methods.setLogin(_name).send({
 		from: myAddress
 	}).then(function(receipt){
-
+		console.log(_name)
 	});
 
 }
 
+async function getCharacter(){
+	await myContract.methods.steve().call({
+		from: myAddress
+	}).then(function(response){
+		console.log(response)
+	})
+}
+
+async function getKeysShop(){
+	myContract.methods.getKeysShop().call().then(function(response){
+		console.log(response)
+	})
+}
+
+async function showStats(){
+	let statsPopUp = 
+}
 
 
 

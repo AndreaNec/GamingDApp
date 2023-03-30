@@ -18,7 +18,7 @@ a {
 /*login*/
 
 .loginSec{
-  background: url(/images/forest.gif);
+  background: url(/images/backgroundlogin.gif);
   background-size:cover;           
   background-repeat: no-repeat;
   background-position: bottom;
@@ -26,14 +26,62 @@ a {
 }
 
 .Log{
-  background-color: antiquewhite;
   width: 40vw;
   height: 40vh;
-  border-radius: 10px;
-  border: solid #13131377 5px;
+
+  position: relative;
+
+  top: 25%;
+
+  gap:1.5em;
 }
 
+.button-img{
+  width: 10em;
+  height: 10em;
 
+  background: transparent;
+  border: none;
+}
+
+/*upperFunc*/
+
+.upperFunc{
+  width: 100vw;
+
+  justify-content: space-between;
+}
+
+.statsButton{
+  width: 6em;
+  height: auto;
+
+  background: transparent;
+  border: none;
+}
+
+.statsPop h1{
+  font-size: 22px;
+}
+
+.statsPop:target{
+  display: block;
+}
+
+.statsPop{
+  position: absolute;
+  width: 50vw;
+  height: 50vh;
+
+  display: none;
+
+  top:25vh;
+  left:25vw;
+
+  background: #d8d6c0;
+  border: solid #474747 5px;
+  border-radius: 15px;
+}
 
 
 
@@ -46,11 +94,11 @@ section{
   height: 100vh;
 }
 
-.world{
+.worldEarth{
   background: url(/images/forest.gif);
   background-size:cover;           
   background-repeat: no-repeat;
-  background-position: bottom;
+  background-position: center;
   background-clip: border-box;
 }
 
