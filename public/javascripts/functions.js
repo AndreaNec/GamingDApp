@@ -6,6 +6,8 @@ let web3 = {};
 let myContract = {}
 let myAddress = ""
 
+let mineCounter = 0;
+
 
 
 
@@ -1899,11 +1901,13 @@ async function showStats(){
 	//le stats nello smart contract come anche il value del mine sono da rifare
 	await myContract.methods.getStats().call().then(function(response){
 		let stats = Object.values(response);
+		let balance = web3.utils.fromWei(stats[1], "ether")
 		console.log(stats)
 		document.getElementById("gainXBlockValue").innerHTML = stats[0]
-		document.getElementById("balanceValue").innerHTML = stats[1];
+		document.getElementById("balanceValue").innerHTML = balance + " ETH";
 		document.getElementById("damageValue").innerHTML = stats[2];
 		document.getElementById("defenseValue").innerHTML = stats[3];
+		
 
 	})
 }
@@ -1925,6 +1929,34 @@ async function showInventory(){
 
 	})
 }
+
+function TypeControlInventory(_inventory, _index){
+	if(_inventory[_index].tipo == 0){
+		
+		//return "nothing"
+	}
+	if(_inventory[_index].tipo == 1){
+
+		//return "pickacxe"
+	}
+	if(_inventory[_index].tipo == 2){
+		//return "armor"
+	}
+	if(_inventory[_index].tipo == 3){
+		//return "nothing"
+	}
+}
+
+async function selectPickacxe(_tool){
+	await myContract.methods.selectPickacxe(_tool){
+
+	}
+}
+async function selectSword(){
+
+}
+async function 
+
 
 function getRarity(_value){
 	if(_value == 0){
@@ -1967,10 +1999,12 @@ async function getInfoToll(){
 	await myContract.methods.getToolStats(_tool).call({
 		from:myAddress
 	}).then(function(response){
-		let _infoTool = Object.values(response)
-		let rarity = getRarity(_infoTool[8])
-		let tipo = getTipoName(_infoTool[9])
-		console.log(_infoTool)
+		let _infoTool = Object.values(response);
+		let cost = web3.utils.fromWei(_infoTool[6],'ether');
+		let reSell = web3.utils.fromWei(_infoTool[7],'ether');
+		let rarity = getRarity(_infoTool[8]);
+		let tipo = getTipoName(_infoTool[9]);
+		console.log(_infoTool);
 
 		document.getElementById("showInfoName").innerHTML = _infoTool[0]
 		document.getElementById("showInfoMoneyMining").innerHTML = _infoTool[1]
@@ -1978,8 +2012,8 @@ async function getInfoToll(){
 		document.getElementById("showInfoDamage").innerHTML = _infoTool[3]
 		document.getElementById("showInfoDefense").innerHTML = _infoTool[4]
 		document.getElementById("showInfoBoostarmor").innerHTML = _infoTool[5]
-		document.getElementById("showInfoCost").innerHTML = _infoTool[6]
-		document.getElementById("showInfoReSell").innerHTML = _infoTool[7]
+		document.getElementById("showInfoCost").innerHTML = cost
+		document.getElementById("showInfoReSell").innerHTML = reSell
 		document.getElementById("showInfoRarity").innerHTML = rarity
 		document.getElementById("showInfoTipo").innerHTML = tipo
 	})
@@ -1991,28 +2025,31 @@ async function buyShop(){
 	let _index = document.getElementById("indexItemShop").value;
 	await myContract.methods.ShopMint(_tooToBuy, _index).send({
 		from: myAddress,
-		value: web3.utils.toWei(_value,'wei')
+		value: web3.utils.toWei(_value,'ether')
 	}).then(function(response){
 		console.log("ci sei riuscito")
 	})
 }
 
 async function mine(){
-	let counter = 0;
+	counter = 0;
 
 	document.getElementById("img-Carachter").style.width = "50em"
 	document.getElementById("img-Carachter").src = "./images/robert-russell-attack-large.gif"
 
-	var delayInMilliseconds = 800; //1 second
+	var delayInMilliseconds = 800; //0.8 second
 
 	setTimeout(function() {
 		document.getElementById("img-Carachter").style.width = "22em"
 		document.getElementById("img-Carachter").src = "./images/robert-russell-idle-large.gif"
 	}, delayInMilliseconds);
 
-	counter++
-	if(counter == 5){
-		mineContract()
+	mineCounter++
+	console.log("counter is " + mineCounter)
+	if(mineCounter == 5){
+		await mineContract()
+		mineCounter = 0;
+		
 	}
 }
 
