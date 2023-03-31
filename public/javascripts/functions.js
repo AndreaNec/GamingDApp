@@ -1945,6 +1945,7 @@ async function showInventory(){
 }
 
 async function TypeControlInventory(_index){
+	//far si che se è empty di selectarlo non sono sicuro si possa fare, cmq non è importante
 	console.log("tipo " + inventory[_index].tipo)
 	if(inventory[_index].tipo == 0){
 
@@ -1953,14 +1954,15 @@ async function TypeControlInventory(_index){
 	if(inventory[_index].tipo == 1){
 		console.log(inventory[_index].name)
 		await selectPickacxe(_index)
-		console.log("PICK!")
 
 		//return "pickacxe"
 	}
 	if(inventory[_index].tipo == 2){
+		await selectSword(_index)
 		//return "armor"
 	}
 	if(inventory[_index].tipo == 3){
+		await selectArmor(_index)
 		//return "nothing"
 	}
 }
@@ -1972,19 +1974,19 @@ async function selectPickacxe(_tool){
 		console.log("you have swapped pickacxe")
 	})
 }
-async function selectSword(){
+async function selectSword(_tool){
 	await myContract.methods.selectSword(_tool).send({
 		from: myAddress
 	}).then(function(response){
-		console.log("you have swapped pickacxe")
+		console.log("you have swapped sword")
 	})
 }
 
-async function selectArmor(){
+async function selectArmor(_tool){
 	await myContract.methods.selectArmor(_tool).send({
 		from: myAddress
 	}).then(function(response){
-		console.log("you have swapped pickacxe")
+		console.log("you have swapped armor")
 	})
 }
 
@@ -2060,6 +2062,10 @@ async function buyShop(){
 	}).then(function(response){
 		console.log("ci sei riuscito")
 	})
+}
+
+async function sell(){
+	
 }
 
 async function mine(){
