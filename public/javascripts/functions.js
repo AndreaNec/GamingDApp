@@ -1934,17 +1934,26 @@ async function showInventory(){
 	await myContract.methods.steve().call({
 		from: myAddress
 	}).then(function(response){
-		let _steveInfo = Object.values(response)
+		let _steveInfo = response
+		console.log("info steve " + response.pickacxe.name)
+		document.getElementById("selectedPickacxe").innerHTML = _steveInfo.pickacxe.name
+		document.getElementById("selectedSword").innerHTML = _steveInfo.sword.name
+		document.getElementById("selectedArmor").innerHTML = _steveInfo.armor.name
+		
 		
 	})
 }
 
-function TypeControlInventory(_index){
+async function TypeControlInventory(_index){
+	console.log("tipo " + inventory[_index].tipo)
 	if(inventory[_index].tipo == 0){
-		selectPickacxe(inventory[_index].name)
+
 		//return "nothing"
 	}
 	if(inventory[_index].tipo == 1){
+		console.log(inventory[_index].name)
+		await selectPickacxe(_index)
+		console.log("PICK!")
 
 		//return "pickacxe"
 	}
@@ -2069,8 +2078,9 @@ async function mine(){
 	mineCounter++
 	console.log("counter is " + mineCounter)
 	if(mineCounter == 5){
-		await mineContract()
 		mineCounter = 0;
+		await mineContract()
+
 		
 	}
 }
@@ -2079,6 +2089,7 @@ async function mineContract() {
 	await myContract.methods.mine().send({
 		from: myAddress
 	}).then(function(response){
-		console.log(value)
+		let value = response
+		console.log("the value is " + value)
 	})
 }
