@@ -92,6 +92,50 @@ a {
 
   z-index: 5;
 }
+/*Info Tool*/
+.infoToolbtn{
+  width: 10em;
+  height: auto;
+
+  background: transparent;
+  border: none;
+}
+
+.inventoryButton img{
+  width: 100%;
+  height: 100%;
+}
+
+.infoTollPop h1{
+  font-size: 22px;
+}
+
+.infoTollPop:target{
+  display: block !important;
+}
+
+.infoTollPop{
+  transition: 200ms;
+
+  padding: 2em;
+
+  position: absolute;
+  width: 50vw;
+  height: 50vh;
+
+  display: none !important; 
+
+  top:25vh;
+  left:25vw;
+
+  background: #d8d6c0;
+  border: solid #474747 5px;
+  border-radius: 15px;
+
+  z-index: 10;
+}
+
+
 
 /*Inventory*/
 
@@ -116,6 +160,27 @@ a {
   display: block !important;
 }
 
+.shopPop{
+  transition: 200ms;
+
+  padding: 2em;
+
+  position: absolute !important;
+  width: 50vw;
+  height: 50vh;
+
+  display: none !important; 
+
+  bottom:25vh;
+  left:25vw;
+
+  background: #d8d6c0;
+  border: solid #474747 5px;
+  border-radius: 15px;
+
+  z-index: 10;
+}
+
 .inventoryPop{
   transition: 200ms;
 
@@ -137,6 +202,18 @@ a {
   z-index: 10;
 }
 
+/*X*/
+
+.X{
+  position: absolute;
+  top: 2%;
+  right: 1%;
+  
+  font-size: 18px;
+
+}
+
+
 /*lowfunc*/
 .lowFunc{
   width: 98vw;
@@ -146,7 +223,20 @@ a {
 
   justify-content: space-between;
   align-items:end;
-  bottom: 3%;
+  bottom: 5.6%;
+
+  overflow:visible;
+}
+
+.carachter{
+  width: 22em;
+  height: auto;
+
+  overflow: visible;
+}
+.carachter img{
+  width: 100%;
+  height: 100%;
 }
 
 section{
@@ -158,6 +248,12 @@ section{
   height: 100vh;
 }
 
+.shopPop:target{
+  display: flex !important;
+  flex-direction: column;
+}
+
+/**/
 .worldEarth{
   background: url(/images/forest.gif);
   background-size:cover;           
@@ -166,6 +262,8 @@ section{
   background-clip: border-box;
 
   justify-content: space-between;
+
+  overflow: hidden;
 }
 
 .flex{

@@ -1890,7 +1890,8 @@ async function getCharacter(){
 
 async function getKeysShop(){
 	await myContract.methods.getKeysShop().call().then(function(response){
-		console.log(response)
+		let Keys = response
+		document.getElementById("keysText").innerHTML = Keys
 	})
 }
 
@@ -1925,5 +1926,100 @@ async function showInventory(){
 	})
 }
 
+function getRarity(_value){
+	if(_value == 0){
+		return "nothing"
+	}
+	if(_value == 1){
+		return "common"
+	}
+	if(_value == 2){
+		return "rare"
+	}
+	if(_value == 3){
+		return "epic"
+	}
+	if(_value == 4){
+		return "legendary"
+	}
+	if(_value == 5){
+		return "exotic"
+	}
+}
 
+function getTipoName(_value){
+	if(_value == 0){
+		return "nothing"
+	}
+	if(_value == 1){
+		return "pickacxe"
+	}
+	if(_value == 2){
+		return "armor"
+	}
+	if(_value == 3){
+		return "nothing"
+	}
+}
 
+async function getInfoToll(){
+	let _tool = document.getElementById("infoToolInput").value
+	await myContract.methods.getToolStats(_tool).call({
+		from:myAddress
+	}).then(function(response){
+		let _infoTool = Object.values(response)
+		let rarity = getRarity(_infoTool[8])
+		let tipo = getTipoName(_infoTool[9])
+		console.log(_infoTool)
+
+		document.getElementById("showInfoName").innerHTML = _infoTool[0]
+		document.getElementById("showInfoMoneyMining").innerHTML = _infoTool[1]
+		document.getElementById("showInfoDurability").innerHTML = _infoTool[2]
+		document.getElementById("showInfoDamage").innerHTML = _infoTool[3]
+		document.getElementById("showInfoDefense").innerHTML = _infoTool[4]
+		document.getElementById("showInfoBoostarmor").innerHTML = _infoTool[5]
+		document.getElementById("showInfoCost").innerHTML = _infoTool[6]
+		document.getElementById("showInfoReSell").innerHTML = _infoTool[7]
+		document.getElementById("showInfoRarity").innerHTML = rarity
+		document.getElementById("showInfoTipo").innerHTML = tipo
+	})
+}
+
+async function buyShop(){
+	let _tooToBuy = document.getElementById("buyItem").value;
+	let _value = document.getElementById("valueItem").value;
+	let _index = document.getElementById("indexItemShop").value;
+	await myContract.methods.ShopMint(_tooToBuy, _index).send({
+		from: myAddress,
+		value: web3.utils.toWei(_value,'wei')
+	}).then(function(response){
+		console.log("ci sei riuscito")
+	})
+}
+
+async function mine(){
+	let counter = 0;
+
+	document.getElementById("img-Carachter").style.width = "50em"
+	document.getElementById("img-Carachter").src = "./images/robert-russell-attack-large.gif"
+
+	var delayInMilliseconds = 800; //1 second
+
+	setTimeout(function() {
+		document.getElementById("img-Carachter").style.width = "22em"
+		document.getElementById("img-Carachter").src = "./images/robert-russell-idle-large.gif"
+	}, delayInMilliseconds);
+
+	counter++
+	if(counter == 5){
+		mineContract()
+	}
+}
+
+async function mineContract() {
+	await myContract.methods.mine().send({
+		from: myAddress
+	}).then(function(response){
+		console.log(value)
+	})
+}

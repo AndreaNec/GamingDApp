@@ -20,7 +20,9 @@
             </div>
             <button class="button-img" onclick="connectMetamask()"><img class="img-responsive" src="./images/metamask.svg" alt=""></button>
             <button class="btn btn-light" onclick="loadContract()">Load Contract</button>
-
+            <button class="infoToolbtn flex" id="inventoryButton" onclick="showInventory()">
+                <a href="#infoToolId" class="statsIcon"><img src="./images/infoTool.png" alt=""></a>
+            </button>
             <button class="inventoryButton flex" id="inventoryButton" onclick="showInventory()">
                 <a href="#inventoryPopId" class="statsIcon"><img src="./images/backpack.png" alt=""></a>
             </button>
@@ -31,7 +33,7 @@
 
 
 
-            <div class="statsPop flex column" id="statsPopId">
+            <div class="statsPop Pop flex column" id="statsPopId">
                 <!-- mettere le icone -->
                 <div class="gainXBlock flex a-center gap2">
                     <img src="" alt="">
@@ -53,10 +55,10 @@
                     <h1>defense</h1>
                     <p id="defenseValue"></p>
                 </div>
-                <a href="#" style="margin-left:2em">X</a>
+                <a href="#" style="margin-left:2em" class="X">❌</a>
             </div>
         </div>
-        <div class="inventoryPop flex column " id="inventoryPopId">
+        <div class="inventoryPop Pop flex column " id="inventoryPopId">
             <div class="slot flex a-center gap2">
                 <img src="" alt="">
                 <h1 id="slotInv1"></h1>
@@ -97,34 +99,84 @@
                 <img src="" alt="">
                 <h1 id="slotInv10"></h1>
             </div>
-            <a href="#" style="margin-left:2em">X</a>
+            <a href="#" style="margin-left:2em" class="X">❌</a>
+        </div>
+        <div class="infoTollPop Pop" id="infoToolId"style="display: none;">
+            <input type="text" id="infoToolInput">
+            <button class="infoBtn btn" onclick="getInfoToll()">getInfo</button>
+            <div class="valueTool flex a-center gap2">
+                <h1>name:</h1>
+                <p id="showInfoName"></p>
+            </div>
+            <div class="valueTool flex a-center gap2">
+                <h1>money mining:</h1>
+                <p id="showInfoMoneyMining"></p>
+            </div>
+            <div class="valueTool flex a-center gap2">
+                <h1>durability:</h1>
+                <p id="showInfoDurability"></p>
+            </div>
+            <div class="valueTool flex a-center gap2">
+                <h1>damage:</h1>
+                <p id="showInfoDamage"></p>
+            </div>
+            <div class="valueTool flex a-center gap2">
+                <h1>defense:</h1>
+                <p id="showInfoDefense"></p>
+            </div>
+            <div class="valueTool flex a-center gap2">
+                <h1>boostarmor:</h1>
+                <p id="showInfoBoostarmor"></p>
+            </div>
+            <div class="valueTool flex a-center gap2">
+                <h1>cost:</h1>
+                <p id="showInfoCost"></p>
+            </div>
+            <div class="valueTool flex a-center gap2">
+                <h1>reSell:</h1>
+                <p id="showInfoReSell"></p>
+            </div>
+            <div class="valueTool flex a-center gap2">
+                <h1>rarity:</h1>
+                <p id="showInfoRarity"></p>
+            </div>
+            <div class="valueTool flex a-center gap2">
+                <h1>Type:</h1>
+                <p id="showInfoTipo"></p>
+            </div>
+            <a href="#" style="margin-left:2em"class="X">❌</a>
         </div>
         <div class="lowFunc flex">
             <div class="carachter">
-                <img src="./images/temp/Miner.png" alt="">
-                <div class="pick">
+                <img src="./images/robert-russell-idle-large.gif" id="img-Carachter" alt="">
+                <!-- <div class="pick">
                     <img src="" alt="">
-                </div>
+                </div> -->
             </div>
-            <button class="block">
+            <button class="block" onclick="mine()">
                 <img src="./images/temp/block.png" alt="">
             </button>
             <!-- fare che lo shop è un pop up con tasto per lista key, tasto buy, tasto sell -->
             <button class="shop">
-                <img src="./images/shop.png" alt="">
+                <a href="#shopPop"><img src="./images/shop.png" alt=""></a>
             </button>
-        <div class="shopPop" id="shopPop" style="display:none">
-            <button class="showKeys btn">ShowKeys</button>
+        <div class="shopPop Pop flex" id="shopPop">
+            <button class="showKeys btn" onclick="getKeysShop()">ShowKeys</button>
             <p id="keysText"></p>
-            <div class="buy">
-                <input type="text">
-                <button class="buy btn">Buy</button>
+            <div class="buy flex a-center gap2">
+                <input type="text" id="buyItem">
+                <h1 style="font-size: 16px">Item</h1>
+                <input type="number" id="indexItemShop">
+                <h1 style="font-size: 16px">slot</h1>
+                <input type="number" id="valueItem">
+                <h1 style="font-size: 16px;">value</h1>
+                <button class="buy btn" onclick="buyShop()">Buy</button>
             </div>
-            <div class="sell">
-                <input type="number" name="" id="">
+            <div class="sell flex">
+                <input type="number" name="" id="sellItem">
                 <button class="sell btn">Sell</button>
             </div>
-            
+            <a href="#" style="margin-left:2em" class="X">❌</a>
         </div>
         <!-- <a href="./HomePage.html" class="btn btn-info">F go back</a> -->
     </section>
