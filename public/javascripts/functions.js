@@ -7,6 +7,7 @@ let myContract = {}
 let myAddress = ""
 
 let mineCounter = 0;
+let inventory;
 
 
 
@@ -1914,48 +1915,69 @@ async function showStats(){
 
 async function showInventory(){
 	await myContract.methods.getInventorys().call().then(function(response){
-		let inventory = response;
-		console.log(inventory)
-		document.getElementById("slotInv1").innerHTML = inventory[0].name
-		document.getElementById("slotInv2").innerHTML = inventory[1].name;
-		document.getElementById("slotInv3").innerHTML = inventory[2].name;
-		document.getElementById("slotInv4").innerHTML = inventory[3].name;
-		document.getElementById("slotInv5").innerHTML = inventory[4].name;
-		document.getElementById("slotInv6").innerHTML = inventory[5].name;
-		document.getElementById("slotInv7").innerHTML = inventory[6].name;
-		document.getElementById("slotInv8").innerHTML = inventory[7].name;
-		document.getElementById("slotInv9").innerHTML = inventory[8].name;
-		document.getElementById("slotInv10").innerHTML = inventory[9].name;
+		let _inventory = response;
+		inventory = _inventory
 
+		console.log(inventory)
+		document.getElementById("slotInv1").innerHTML = _inventory[0].name
+		document.getElementById("slotInv2").innerHTML = _inventory[1].name;
+		document.getElementById("slotInv3").innerHTML = _inventory[2].name;
+		document.getElementById("slotInv4").innerHTML = _inventory[3].name;
+		document.getElementById("slotInv5").innerHTML = _inventory[4].name;
+		document.getElementById("slotInv6").innerHTML = _inventory[5].name;
+		document.getElementById("slotInv7").innerHTML = _inventory[6].name;
+		document.getElementById("slotInv8").innerHTML = _inventory[7].name;
+		document.getElementById("slotInv9").innerHTML = _inventory[8].name;
+		document.getElementById("slotInv10").innerHTML = _inventory[9].name;
+
+	})
+	await myContract.methods.steve().call({
+		from: myAddress
+	}).then(function(response){
+		let _steveInfo = Object.values(response)
+		
 	})
 }
 
-function TypeControlInventory(_inventory, _index){
-	if(_inventory[_index].tipo == 0){
-		
+function TypeControlInventory(_index){
+	if(inventory[_index].tipo == 0){
+		selectPickacxe(inventory[_index].name)
 		//return "nothing"
 	}
-	if(_inventory[_index].tipo == 1){
+	if(inventory[_index].tipo == 1){
 
 		//return "pickacxe"
 	}
-	if(_inventory[_index].tipo == 2){
+	if(inventory[_index].tipo == 2){
 		//return "armor"
 	}
-	if(_inventory[_index].tipo == 3){
+	if(inventory[_index].tipo == 3){
 		//return "nothing"
 	}
 }
 
 async function selectPickacxe(_tool){
-	await myContract.methods.selectPickacxe(_tool){
-
-	}
+	await myContract.methods.selectPickacxe(_tool).send({
+		from: myAddress
+	}).then(function(response){
+		console.log("you have swapped pickacxe")
+	})
 }
 async function selectSword(){
-
+	await myContract.methods.selectSword(_tool).send({
+		from: myAddress
+	}).then(function(response){
+		console.log("you have swapped pickacxe")
+	})
 }
-async function 
+
+async function selectArmor(){
+	await myContract.methods.selectArmor(_tool).send({
+		from: myAddress
+	}).then(function(response){
+		console.log("you have swapped pickacxe")
+	})
+}
 
 
 function getRarity(_value){
