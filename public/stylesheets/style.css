@@ -54,6 +54,44 @@ a {
   justify-content: space-between;
 }
 
+.world{
+  width: 12em
+}
+
+.world img{
+  width: 100%;
+  height: 100%;
+}
+
+.worldPop h1{
+  font-size: 18px;
+}
+
+.worldPop:target{
+  display: flex !important;
+}
+
+.worldPop{
+  transition: 200ms;
+
+  padding: 2em;
+
+  position: absolute;
+  width: 50vw;
+  height: 50vh;
+
+  display: none !important; 
+
+  top:25vh;
+  left:25vw;
+
+  background: #d8d6c0;
+  border: solid #474747 5px;
+  border-radius: 15px;
+
+  z-index: 5;
+}
+
 /*Stats*/
 
 .statsButton{

@@ -15,9 +15,9 @@
 <body>
     <section class="worldEarth flex a-center">
         <div class="upperFunc flex a-center">
-            <div class="world" id="currentWorld">
-                <h1>Terra</h1>
-            </div>
+            <button class="world" id="currentWorld" onclick="getWorlds()">
+                <a href="#worldPopId"><img src="./images/pianeta.png" alt=""></a>
+            </button>
             <button class="button-img" onclick="connectMetamask()"><img class="img-responsive" src="./images/metamask.svg" alt=""></button>
             <button class="btn btn-light" onclick="loadContract()">Load Contract</button>
             <button class="infoToolbtn flex" id="inventoryButton" onclick="showInventory()">
@@ -32,7 +32,43 @@
             </button>
 
 
+            <div class="worldPop pop column" id="worldPopId">
+                <div class="world flex a-center" style="width:100%">
+                    <h1 id="nameTerra"></h1>
+                    <button class="btn buttonSelectWorld" onclick="selectWorld(0)">select World</button>
+                    <button class="btn buttonBuyWorld" onclick="buyWorld(0)">buy World</button>
 
+                </div>
+                <div class="world flex a-center" style="width:100%">
+                    <h1 id="nameLuna"></h1>
+                    <button class="btn buttonSelectWorld" onclick="selectWorld(1)">select World</button>
+                    <button class="btn buttonBuyWorld" onclick="buyWorld(1)">buy World</button>
+                    
+                </div>
+                <div class="world flex a-center" style="width:100%">
+                    <h1 id="nameMars"></h1>
+                    <button class="btn buttonSelectWorld" onclick="selectWorld(2)">select World</button>
+                    <button class="btn buttonBuyWorld" onclick="buyWorld(2)">buy World</button>
+                </div>
+                <div class="world flex a-center" style="width:100%">
+                    <h1 id="nameNeptune"></h1>
+                    <button class="btn buttonSelectWorld" onclick="selectWorld(3)">select World</button>
+                    <button class="btn buttonBuyWorld" onclick="buyWorld(3)">buy World</button>
+                </div>
+                <div class="world flex a-center" style="width:100%">
+                    <h1 id="nameHell"></h1>
+                    <button class="btn buttonSelectWorld" onclick="selectWorld(4)">select World</button>
+                    <button class="btn buttonBuyWorld" onclick="buyWorld(4)">buy World</button>
+                </div>
+                <div class="world flex a-center" style="width:100%">
+                    <h1 id="nameCrypto"></h1>
+                    <button class="btn buttonSelectWorld" onclick="selectWorld(5)">select World</button>
+                    <button class="btn buttonBuyWorld" onclick="buyWorld(5)">buy World</button>
+                </div>
+                <input type="number" id="valoreInputMondo">
+                <p>inserisci valore</p>
+                <a href="#" style="margin-left:2em" class="X">❌</a>
+            </div>
             <div class="statsPop Pop flex column" id="statsPopId">
                 <!-- mettere le icone -->
                 <div class="gainXBlock flex a-center gap2">

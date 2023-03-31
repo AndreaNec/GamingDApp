@@ -8,6 +8,9 @@ let myAddress = ""
 
 let mineCounter = 0;
 let inventory;
+let worlds;
+
+web3.eth.handleRevert = true
 
 
 
@@ -1898,6 +1901,48 @@ async function getKeysShop(){
 	})
 }
 
+//Mostra I mondi e se sono lockati
+
+//non mostra se sono lockati pk ho solo accesso ai nomi, va fatto nel contratto o un get infoWorld eventualmente. Altrimenti posso provare con js
+async function getWorlds(){
+	await myContract.methods.getKeysShopWorlds().call({
+		from: myAddress
+	}).then(function(response){
+		worlds = response
+		console.log(worlds)
+		document.getElementById("nameTerra").innerHTML = worlds[0]
+		document.getElementById("nameLuna").innerHTML = worlds[1]
+		document.getElementById("nameMars").innerHTML = worlds[2]
+		document.getElementById("nameNeptune").innerHTML = worlds[2]
+		document.getElementById("nameHell").innerHTML = worlds[4]
+		document.getElementById("nameCrypto").innerHTML = worlds[5]
+
+	})
+}
+
+//seleziona il mondo
+//aggiungere che il mondo selezionato aumenta di opacità
+async function selectWorld(_worldIndex){
+	await myContract.methods.selectWorld(worlds[_worldIndex]).send({
+		from: myAddress
+	}).then(function(response){
+
+		console.log("hai cambiato mondo")
+	})
+
+	
+}
+
+async function buyWorld(_index){
+	let _value = document.getElementById("valoreInputMondo").value
+	await myContract.methods.ShopMondo(worlds[_index]).send({
+		from: myAddress,
+		value: web3.utils.toWei(_value,'ether')
+	}).then(function(response){
+		console.log("ci sei riuscito")
+	})
+}
+
 async function showStats(){
 	//le stats nello smart contract come anche il value del mine sono da rifare
 	await myContract.methods.getStats().call().then(function(response){
@@ -2065,7 +2110,12 @@ async function buyShop(){
 }
 
 async function sell(){
-	
+	let _index = document.getElementById("sellItem").value
+	await myContract.methods.Sell(_index).send({
+		from: myAddress
+	}).then(function(response){
+		console.log(response)
+	})
 }
 
 async function mine(){
