@@ -296,7 +296,7 @@ section{
   background-image: url(/images/forest.gif);
   background-size:cover;           
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: bottom;
   background-clip: border-box;
 
   justify-content: space-between;
