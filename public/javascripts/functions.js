@@ -962,6 +962,13 @@ async function connectMetamask() {
 	}).then(function(response){
 		console.log(response)
 	})*/
+	await loadContract();
+	await checkWorld();
+	alert(
+		"Il pianeta serve a selezionare il mondo, le info servono per prendere le stats degli oggetti, la moneta per le stats,premi il blocco per minare, il caretello per i duelli ed infine la struttura in basso a destra per lo shop"
+		)
+
+
 }
 
 async function loadContract(){
@@ -1887,11 +1894,14 @@ async function login(){
 }
 
 async function getCharacter(){
+	let _steve;
 	await myContract.methods.steve().call({
 		from: myAddress
 	}).then(function(response){
-		console.log(response)
+		_steve = response
+		console.log("get carcater " + response)
 	})
+	return _steve
 }
 
 async function getKeysShop(){
@@ -1920,6 +1930,38 @@ async function getWorlds(){
 	})
 }
 
+async function checkWorld(){
+	// bisogna chiedere se il return funziona oppure no
+	let steveWorld = await getCharacter()
+	steveWorld = Object.values(steveWorld.world)
+	steveWorld = steveWorld[0]
+	console.log(steveWorld)
+
+	if(steveWorld == "Terra"){
+		document.getElementById("currentWorldId").style.backgroundImage = "url('/images/forest.gif')"
+		
+	}
+	if(steveWorld == "Luna"){
+		document.getElementById("currentWorldId").style.backgroundImage = "url('/images/Moon.png')"
+	}
+	if(steveWorld == "Mars"){
+		document.getElementById("currentWorldId").style.backgroundImage = "url('/images/forest.gif')"
+		alert("it's not available right now")
+	}
+	if(steveWorld == "Neptune"){
+		document.getElementById("currentWorldId").style.backgroundImage = "url('/images/forest.gif')"
+		alert("it's not available right now")
+	}
+	if(steveWorld == "Hell"){
+		document.getElementById("currentWorldId").style.backgroundImage = "url('/images/forest.gif')"
+		alert("it's not available right now")
+	}
+	if(steveWorld == "Crypto"){
+		document.getElementById("currentWorldId").style.backgroundImage = "url('/images/forest.gif')"
+		alert("it's not available right now")
+	}
+}
+
 //seleziona il mondo
 //aggiungere che il mondo selezionato aumenta di opacità
 async function selectWorld(_worldIndex){
@@ -1927,13 +1969,7 @@ async function selectWorld(_worldIndex){
 	await myContract.methods.selectWorld(worlds[_worldIndex]).send({
 		from: myAddress
 	}).then(function(response){
-		if(selectedWorld == "Terra"){
-			document.getElementById("currentWorldId").style.backgroundImage = "url('./images/forest.gif')"
-		}
-		else if(selectedWorld == "Luna"){
-			document.getElementById("currentWorldId").style.backgroundImage = "url('./images/Moon.png')"
-		}
-
+		checkWorld()
 		console.log("hai cambiato mondo")
 	})
 
