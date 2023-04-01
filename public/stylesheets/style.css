@@ -293,7 +293,7 @@ section{
 
 /**/
 .worldEarth{
-  background: url(/images/forest.gif);
+  background-image: url(/images/forest.gif);
   background-size:cover;           
   background-repeat: no-repeat;
   background-position: center;

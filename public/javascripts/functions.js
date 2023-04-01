@@ -10,7 +10,7 @@ let mineCounter = 0;
 let inventory;
 let worlds;
 
-web3.eth.handleRevert = true
+
 
 
 
@@ -1923,9 +1923,16 @@ async function getWorlds(){
 //seleziona il mondo
 //aggiungere che il mondo selezionato aumenta di opacità
 async function selectWorld(_worldIndex){
+	let selectedWorld = worlds[_worldIndex]
 	await myContract.methods.selectWorld(worlds[_worldIndex]).send({
 		from: myAddress
 	}).then(function(response){
+		if(selectedWorld == "Terra"){
+			document.getElementById("currentWorldId").style.backgroundImage = "url('./images/forest.gif')"
+		}
+		else if(selectedWorld == "Luna"){
+			document.getElementById("currentWorldId").style.backgroundImage = "url('./images/Moon.png')"
+		}
 
 		console.log("hai cambiato mondo")
 	})

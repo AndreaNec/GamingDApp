@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="./stylesheets/style.css">
 </head>
 <body>
-    <section class="worldEarth flex a-center">
+    <section class="worldEarth flex a-center" id="currentWorldId" >
         <div class="upperFunc flex a-center">
             <button class="world" id="currentWorld" onclick="getWorlds()">
                 <a href="#worldPopId"><img src="./images/pianeta.png" alt=""></a>
@@ -235,7 +235,7 @@
             </div>
             <div class="sell flex">
                 <input type="number" name="" id="sellItem">
-                <button class="sell btn">Sell</button>
+                <button class="sell btn" onclick="sell()">Sell</button>
             </div>
             <a href="#" style="margin-left:2em" class="X">❌</a>
         </div>
