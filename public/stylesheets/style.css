@@ -277,6 +277,14 @@ a {
   height: 100%;
 }
 
+.block{
+  width:10em;
+  height: auto;
+}
+.block img{
+  width: 100%;
+  height: 100%;
+}
 section{
   display: flex;
   flex-direction: column;
@@ -293,7 +301,7 @@ section{
 
 /**/
 .worldEarth{
-  background-image: url(/images/forest.gif);
+  background-image: url(/images/worlds/forest.gif);
   background-size:cover;           
   background-repeat: no-repeat;
   background-position: bottom;

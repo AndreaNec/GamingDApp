@@ -1938,22 +1938,23 @@ async function checkWorld(){
 	console.log(steveWorld)
 
 	if(steveWorld == "Terra"){
-		document.getElementById("currentWorldId").style.backgroundImage = "url('/images/forest.gif')"
-		
+		document.getElementById("currentWorldId").style.backgroundImage = "url('/images/worlds/forest.gif')"
+		document.getElementById("blockId").src = "/images/blocks/block.png"
 	}
 	if(steveWorld == "Luna"){
-		document.getElementById("currentWorldId").style.backgroundImage = "url('/images/Moon.png')"
+		document.getElementById("currentWorldId").style.backgroundImage = "url('/images/worlds/Moon.png')"
+		document.getElementById("blockId").src = "/images/blocks/moonBlock.png"
 	}
 	if(steveWorld == "Mars"){
-		document.getElementById("currentWorldId").style.backgroundImage = "url('/images/forest.gif')"
+		document.getElementById("currentWorldId").style.backgroundImage = "url('/images/worlds/forest.gif')"
 		alert("it's not available right now")
 	}
 	if(steveWorld == "Neptune"){
-		document.getElementById("currentWorldId").style.backgroundImage = "url('/images/forest.gif')"
+		document.getElementById("currentWorldId").style.backgroundImage = "url('/images/worlds/forest.gif')"
 		alert("it's not available right now")
 	}
 	if(steveWorld == "Hell"){
-		document.getElementById("currentWorldId").style.backgroundImage = "url('/images/forest.gif')"
+		document.getElementById("currentWorldId").style.backgroundImage = "url('/images/worlds/forest.gif')"
 		alert("it's not available right now")
 	}
 	if(steveWorld == "Crypto"){
