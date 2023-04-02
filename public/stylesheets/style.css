@@ -271,6 +271,8 @@ a {
   height: auto;
 
   overflow: visible;
+
+  z-index: 2;
 }
 .carachter img{
   width: 100%;
@@ -280,6 +282,7 @@ a {
 .block{
   width:10em;
   height: auto;
+
 }
 .block img{
   width: 100%;

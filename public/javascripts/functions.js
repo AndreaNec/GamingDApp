@@ -1873,7 +1873,7 @@ async function loadContract(){
 		}
 	];
 	let contracAddress = "0x3cE326B0fCeb8bdeED1cAfe8451D2e501e1c530a";
-    myContract = new web3.eth.Contract(abi, contracAddress);
+    myContract = new web3.eth.Contract(abi, contracAddress, web3.eth.handleRevert = true);
     console.log(myContract);
 	await myContract.methods.getKeysShop().call({
 	}).then(function(response){
@@ -1966,6 +1966,7 @@ async function checkWorld(){
 //seleziona il mondo
 //aggiungere che il mondo selezionato aumenta di opacità
 async function selectWorld(_worldIndex){
+	//nel contratto bisgona fare con non puoi riselezionare il mondo che già hai
 	let selectedWorld = worlds[_worldIndex]
 	await myContract.methods.selectWorld(worlds[_worldIndex]).send({
 		from: myAddress
@@ -2037,6 +2038,8 @@ async function TypeControlInventory(_index){
 	//far si che se è empty di selectarlo non sono sicuro si possa fare, cmq non è importante
 	console.log("tipo " + inventory[_index].tipo)
 	if(inventory[_index].tipo == 0){
+		console.log(inventory[_index].name)
+		await selectSword(_index)
 
 		//return "nothing"
 	}
@@ -2047,11 +2050,12 @@ async function TypeControlInventory(_index){
 		//return "pickacxe"
 	}
 	if(inventory[_index].tipo == 2){
-		await selectSword(_index)
+		console.log(inventory[_index].name)
+		await selectArmor(_index)
 		//return "armor"
 	}
 	if(inventory[_index].tipo == 3){
-		await selectArmor(_index)
+
 		//return "nothing"
 	}
 }
@@ -2103,7 +2107,7 @@ function getRarity(_value){
 
 function getTipoName(_value){
 	if(_value == 0){
-		return "nothing"
+		return "sword"
 	}
 	if(_value == 1){
 		return "pickacxe"
@@ -2150,15 +2154,16 @@ async function buyShop(){
 		value: web3.utils.toWei(_value,'ether')
 	}).then(function(response){
 		console.log("ci sei riuscito")
+		
 	})
 }
 
 async function sell(){
 	let _index = document.getElementById("sellItem").value
 	await myContract.methods.Sell(_index).send({
-		from: myAddress
+		from: myAddress,
 	}).then(function(response){
-		console.log(response)
+		console.log("bo")
 	})
 }
 
@@ -2191,5 +2196,16 @@ async function mineContract() {
 	}).then(function(response){
 		let value = response
 		console.log("the value is " + value)
+	})
+}
+
+async function duel(){
+	//bisogna mettere un require spada per il duello nel contratto
+	let _value;
+	await myContract.methods.duel().send({
+		from: myAddress,
+		value: web3.utils.toWei("0.01",'ether')
+	}).then(function(response){
+		console.log("hai duellato " + response)
 	})
 }
