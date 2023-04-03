@@ -4,8 +4,12 @@
   overflow-x: hidden;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'VT323', monospace;
+  font-weight: bolder;
   background: url(/images/background.png);
   background-size:     cover;           
   background-repeat:   no-repeat;
@@ -225,13 +229,13 @@ a {
   padding: 2em;
 
   position: absolute;
-  width: 50vw;
-  height: 50vh;
+  width: 55vw;
+  height: 73vh;
 
   display: none !important; 
 
-  top:25vh;
-  left:25vw;
+  top: 13.5vh;
+  left: 25vw;
 
   background: #d8d6c0;
   border: solid #474747 5px;
@@ -279,71 +283,7 @@ a {
   height: 100%;
 }
 
-/*lowfunc for duel*/
-.duellowFunc{
-  width: 65vw;
-  height: auto;
 
-  position: absolute !important;
-
-  justify-content: space-between;
-  align-items:end;
-  bottom: 4.6%;
-
-  overflow:visible;
-}
-
-.duelcharacter{
-  width: 22em;
-  height: auto;
-
-  overflow: visible;
-
-  z-index: 2;
-}
-.duelcharacter img{
-  width: 100%;
-  height: 100%;
-}
-
-/* duelbutton */
-
-.duelButton{
-  width: 10em;
-  height: auto;
-
-  background: transparent;
-  border: none;
-}
-
-
-/*lowfunc for botduel*/
-.botlowFunc{
-  width: 30vw;
-  height: auto;
-
-  position: absolute !important;
-  
-
-  justify-content: space-between;
-  align-items:end;
-  bottom: 4.6%;
-
-  overflow:visible;
-}
-
-.botcharacter{
-  width: 15em;
-  height: auto;
-
-  overflow: visible;
-
-  z-index: 2;
-}
-.botcharacter img{
-  width: 100%;
-  height: 100%;
-}
 
 /* block */
 .block{
@@ -413,9 +353,21 @@ p{
   margin: 0;
 }
 
+.nonImgButton{
+  background: rgba(255, 153, 0, 0.884);
+  border: solid #474747 2px;
+  border-radius: 6px;
+  
+  margin: 0.4em;
+}
+
 button{
   background: transparent;
   border: none;
+}
+
+input {
+  border-radius: 5px;
 }
 
 .duelWorld {
@@ -424,4 +376,68 @@ button{
   background-repeat: no-repeat;
   background-position: bottom;
   background-clip: border-box;
+
+  justify-content: flex-end;
+}
+
+/*duel*/
+/*lowfunc for duel*/
+.duellowFunc{
+  width: 75vw;
+  height: auto;
+
+  justify-content: space-between;
+  align-items:end;
+  margin-bottom: 4.6%;
+
+  overflow:visible;
+}
+
+.duelcharacter{
+  width: 22em;
+  height: auto;
+
+  overflow: visible;
+
+  z-index: 2;
+}
+.duelcharacter img{
+  width: 100%;
+  height: 100%;
+}
+
+/* duelbutton */
+
+.duelButton{
+  width: 10em;
+  height: auto;
+
+  background: transparent;
+  border: none;
+}
+
+
+/*lowfunc for botduel*/
+
+.botcharacter{
+  width: 15em;
+  height: auto;
+
+  overflow: visible;
+
+  z-index: 2;
+}
+.botcharacter img{
+  width: 100%;
+  height: 100%;
+}
+
+.fightButton{
+  width: 30em;
+  height: auto;
+}
+
+.fightButton img{
+  width: 100%;
+  height: 100%;
 }

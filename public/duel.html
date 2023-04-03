@@ -12,26 +12,24 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <link rel="stylesheet" href="./stylesheets/style.css">
 </head>
-<body onload="connectMetamask()">
-    <section class="a-center j-center duelWorld">
-        <div class="Log flex a-center j-center column">
-           </div>
-            
-           <div class="duellowFunc flex">
+<body onload="connectMetamaskDuel()">
+    <section class="duelWorld a-center">
+        <a href="./Terra.html" class="btn nonImgButton" style="margin-left: 3.2%;">Go back</a>
+        <div class="duellowFunc flex a-center">
             <div class="duelcharacter">
                 <img  src="./images/robert-russell-idle-large.gif" id="img-Carachterduel" alt="">
-                </div> 
             </div>
-            
-
-            <div class="botlowFunc flex" style="position: relative; right: 5vw">
-                <div class="botcharacter">
+            <div class="fightContainer flex column a-center">
+                <button class="btn fightButton">
+                    <img src="./images/fight_button.png" alt="">
+                </button>
+                <h1 style="font-size: 18px; color:aliceblue">insert bet</h1>
+                <input type="value" id="betValue">
+            </div>
+            <div class="botcharacter">
                     <img  src="./images/white_bot.gif" id="img-Botcharacter" alt="">
-                    </div> 
-                </div>
-
-            
-          
+            </div> 
+        </div>
     </section>
 
 
