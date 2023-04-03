@@ -315,6 +315,9 @@ section{
   overflow: hidden;
 }
 
+
+
+
 .flex{
   display: flex;
 }
@@ -346,4 +349,12 @@ p{
 button{
   background: transparent;
   border: none;
+}
+
+.duelWorld {
+  background: url(/images/duelbackground.jpg);
+  background-size:cover;           
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-clip: border-box;
 }
