@@ -777,15 +777,22 @@ async function checkWorld(){
 	}
 	if(steveWorld == "Mars"){
 		document.getElementById("currentWorldId").style.backgroundImage = "url('/images/worlds/Mars.png')"
+
+		//togliere i commenti alle righe document.get.... e sostituire moonBlock con il rispettivo blocco
+
+		//document.getElementById("blockId").src = "/images/blocks/moonBlock.png"
 	}
 	if(steveWorld == "Neptune"){
 		document.getElementById("currentWorldId").style.backgroundImage = "url('/images/worlds/Neptune.png')"
+		//document.getElementById("blockId").src = "/images/blocks/moonBlock.png"
 	}
 	if(steveWorld == "Hell"){
 		document.getElementById("currentWorldId").style.backgroundImage = "url('/images/worlds/Hell.png')"
+		//document.getElementById("blockId").src = "/images/blocks/moonBlock.png"
 	}
 	if(steveWorld == "Crypto"){
 		document.getElementById("currentWorldId").style.backgroundImage = "url('/images/Crypto.png')"
+		//document.getElementById("blockId").src = "/images/blocks/moonBlock.png"
 	}
 }
 
