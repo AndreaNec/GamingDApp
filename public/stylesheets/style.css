@@ -279,6 +279,73 @@ a {
   height: 100%;
 }
 
+/*lowfunc for duel*/
+.duellowFunc{
+  width: 65vw;
+  height: auto;
+
+  position: absolute !important;
+
+  justify-content: space-between;
+  align-items:end;
+  bottom: 4.6%;
+
+  overflow:visible;
+}
+
+.duelcharacter{
+  width: 22em;
+  height: auto;
+
+  overflow: visible;
+
+  z-index: 2;
+}
+.duelcharacter img{
+  width: 100%;
+  height: 100%;
+}
+
+/* duelbutton */
+
+.duelButton{
+  width: 10em;
+  height: auto;
+
+  background: transparent;
+  border: none;
+}
+
+
+/*lowfunc for botduel*/
+.botlowFunc{
+  width: 30vw;
+  height: auto;
+
+  position: absolute !important;
+  
+
+  justify-content: space-between;
+  align-items:end;
+  bottom: 4.6%;
+
+  overflow:visible;
+}
+
+.botcharacter{
+  width: 15em;
+  height: auto;
+
+  overflow: visible;
+
+  z-index: 2;
+}
+.botcharacter img{
+  width: 100%;
+  height: 100%;
+}
+
+/* block */
 .block{
   width:10em;
   height: auto;
