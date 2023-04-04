@@ -79,9 +79,11 @@ async function connectMetamaskDuel() {
 		console.log(response)
 	})*/
 	await loadContract();
+	
 	alert(
 		"TUTORIAL:\n Inserisci nello spazio la quantità di soldi che si vogliono scommettere.\n se si vince si guadagna il doppio se si perde perdi tutto"
 		)
+
 
 
 }
@@ -1015,7 +1017,7 @@ async function mine(){
 
 	mineCounter++
 	console.log("counter is " + mineCounter)
-	if(mineCounter == 5){
+	if(mineCounter == 20){
 		mineCounter = 0;
 		await mineContract()
 
